@@ -1,0 +1,3 @@
+[0m[[0m[31merror[0m] [0m[0m[Error] /home/andy/sbt Projects/play starter/play-samples-play-scala-starter-example/app/views/index.scala.html:22[0m
+[0m[[0m[31merror[0m] [0m[0m}: Not parsed?[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mtwirlCompileTemplates[0m) Twirl compilation failed[0m
