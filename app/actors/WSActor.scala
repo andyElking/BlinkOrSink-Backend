@@ -3,63 +3,85 @@ package actors
 import akka.actor.{Actor, ActorRef, Props}
 import play.api.libs.json.{JsValue, Json}
 import WSActor._
-import actors.Central.{RegisterMe, SendUpdateTo, UnregisterMe}
+import actors.Central.{RegisterMe, UnregisterMe}
 import akka.http.scaladsl.model
 import models.ServerModel
 import models.ServerModel.User
+import play.api.libs.json._
+import akka.pattern.{ask, pipe}
 
-class WSActor (uuid: String, out: ActorRef, model: ServerModel) extends Actor {
+import scala.concurrent.ExecutionContext
+import scala.concurrent.duration._
+
+class WSActor (val uuid: String, out: ActorRef)(implicit ec: ExecutionContext) extends Actor {
+  var opponent: ActorRef = ActorRef.noSender
   override def receive: Receive = {
-    case MakeConnection(msg) =>
+    case Offer(ref,msg) =>
+      opponent = ref
+      println(s"connected to opponent with msg $msg")
+      // Start WebRTC
+      out ! msg
+    case Abort(msg) =>
+      out ! msg
+      context.stop(out)
+      context.stop(self)
+    case Accept(ref,msg) =>
+      opponent = ref
+      // start WebRTC
+      println(s"connected to opponent with msg $msg")
+      out ! msg
+    case Rematch(msg) =>
+      out ! msg
+    case Message(msg) =>
       out ! msg
     case msg: String =>
-      val partner = model.getOpponentOf(thisUser)
-      partner match {
-        case Some(oppuuid) =>
-          //
-        case None =>
-          matchmake(msg)
-      }
+      executeCommand(msg)
   }
 
   def thisUser = User(uuid)
 
-  def matchmake(msg: String): Unit = {
-    val potentialOpponent = model.waitingUser
-    potentialOpponent match {
-      case Some(otherUser) =>
-        /** Relay the offer sent by the user to the otherUser.
+  /*
+  JSON: {
+    "command" : "offer" / "accept" / "rematch" / "abort" / "message",
+    "msg" : // whatever will be transmitted to the other client
+  }
+  */
 
-            The otherUser should reply with an accept message, which the server should send to the user, afterwards webRTC takes care of stuff.
-
-            If the server successfully sends an accept message to the user, it can update the connection mapping.
-         */
-        model.dequeue()
-        Central.instance ! SendUpdateTo(otherUser.uuid,msg)
-        model.connect(User(uuid), otherUser)
-      case None =>
-        /** If no opponent is yet found, ignore the ping sent by the user and add them to the waiting list. */
-        model.enqueue(User(uuid))
-
+  def executeCommand(s: String): Unit = {
+    val js: JsValue = Json.parse(s)
+    val msg = (js \ "msg").get.toString()
+    (js \ "command").get match {
+      case JsString("offer") =>
+        Central.instance ! Offer(self,msg)
+      case JsString("accept") =>
+        Central.instance ! Accept(self,msg)
+      case JsString("rematch") =>
+        opponent ! Rematch(msg)
+      case JsString("abort") =>
+        context.stop(self)
+      case JsString("message") =>
+        opponent ! Message(msg)
+      case _ =>
+        opponent ! Message(s)
     }
   }
+
 
   @throws[Exception](classOf[Exception])
   override def preStart(): Unit = {
     super.preStart()
-    Central.instance ! RegisterMe(uuid)
+    Central.instance ! RegisterMe()
   }
 
-  @throws[Exception](classOf[Exception])
-  override def postStop(): Unit = {
-    Central.instance ! UnregisterMe(uuid)
-    model.abortConnectionOf(User(uuid))
-    model.removeFromQueue(User(uuid))
-    super.postStop()
-  }
 }
 
 object WSActor {
-  case class MakeConnection(msg: String)
-  def props(uuid: String, clientActorRef: ActorRef, model: ServerModel): Props = Props(new WSActor(uuid, clientActorRef, model))
+  //implicit val ec = ExecutionContext.global
+  sealed trait Command
+  case class Offer(ref: ActorRef, msg: String) extends Command
+  case class Accept(ref: ActorRef, msg: String) extends Command
+  case class Rematch(msg: String) extends Command
+  case class Abort(msg: String) extends Command
+  case class Message(msg: String) extends Command
+  def props(uuid: String, clientActorRef: ActorRef)(implicit ec: ExecutionContext): Props = Props(new WSActor(uuid, clientActorRef))
 }
