@@ -81,6 +81,7 @@ class Central @Inject() (implicit ec: ExecutionContext, system: ActorSystem) ext
       case Some(act2) =>
         connections --= Seq(act1,act2)
         act2 ! Disconnect()
+      case None => ()
     }
 
   }

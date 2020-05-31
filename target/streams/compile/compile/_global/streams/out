@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/andy/sbt Projects/play starter/play-samples-play-scala-starter-example/app/actors/Central.scala:76:20: match may not be exhaustive.[0m
+[0m[[0m[31merror[0m] [0m[0m/home/andy/sbt Projects/play starter/play-samples-play-scala-starter-example/app/actors/Central.scala:80:20: match may not be exhaustive.[0m
 [0m[[0m[31merror[0m] [0m[0mIt would fail on the following input: None[0m
 [0m[[0m[31merror[0m] [0m[0m    connections.get(act1) match {[0m
 [0m[[0m[31merror[0m] [0m[0m                   ^[0m
