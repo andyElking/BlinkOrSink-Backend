@@ -1,20 +1,7 @@
-2020-05-28 19:30:40,356 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-7 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2020-05-31 03:12:18,005 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-7 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
-    filters.ExampleFilter
 
-2020-05-28 19:30:40,538 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-7 - Application started (Dev) (no global state)
-2020-05-28 19:45:17,606 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-18 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-
-    play.filters.csrf.CSRFFilter
-    play.filters.headers.SecurityHeadersFilter
-    play.filters.hosts.AllowedHostsFilter
-    filters.ExampleFilter
-
-2020-05-28 19:45:17,618 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-18 - Application started (Dev) (no global state)
-2020-05-28 21:46:56,746 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-56-thread-9 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
-2020-05-28 21:46:56,748 [INFO] from play.core.server.AkkaHttpServer in pool-56-thread-9 - Stopping Akka HTTP server...
-2020-05-28 21:46:56,750 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-24 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
-2020-05-28 21:46:56,789 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-33 - Running provided shutdown stop hooks
+2020-05-31 03:12:18,190 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-7 - Application started (Dev) (no global state)

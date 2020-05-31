@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/andy/sbt Projects/play starter/play-samples-play-scala-starter-example/conf/routes
-// @DATE:Thu May 28 17:54:40 CEST 2020
+// @DATE:Sun May 31 03:04:29 CEST 2020
 
 
 package router {

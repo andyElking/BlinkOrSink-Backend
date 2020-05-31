@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/andy/sbt Projects/play starter/play-samples-play-scala-starter-example/conf/routes
-// @DATE:Thu May 28 17:54:40 CEST 2020
+// @DATE:Sun May 31 03:04:29 CEST 2020
 
 package router
 
@@ -14,32 +14,24 @@ import _root_.controllers.Assets.Asset
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
-  HomeController_3: controllers.HomeController,
-  // @LINE:8
-  CountController_2: controllers.CountController,
+  HomeController_1: controllers.HomeController,
   // @LINE:10
-  AsyncController_0: controllers.AsyncController,
-  // @LINE:13
-  Assets_1: controllers.Assets,
+  Assets_0: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
-    HomeController_3: controllers.HomeController,
-    // @LINE:8
-    CountController_2: controllers.CountController,
+    HomeController_1: controllers.HomeController,
     // @LINE:10
-    AsyncController_0: controllers.AsyncController,
-    // @LINE:13
-    Assets_1: controllers.Assets
-  ) = this(errorHandler, HomeController_3, CountController_2, AsyncController_0, Assets_1, "/")
+    Assets_0: controllers.Assets
+  ) = this(errorHandler, HomeController_1, Assets_0, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_3, CountController_2, AsyncController_0, Assets_1, prefix)
+    new Routes(errorHandler, HomeController_1, Assets_0, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -47,9 +39,7 @@ class Routes(
   }
 
   def documentation = List(
-    ("""GET""", this.prefix, """controllers.HomeController.index"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """count""", """controllers.CountController.count"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """bla""", """controllers.AsyncController.bla"""),
+    ("""GET""", this.prefix, """controllers.HomeController.ws()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -59,15 +49,15 @@ class Routes(
 
 
   // @LINE:6
-  private[this] lazy val controllers_HomeController_index0_route = Route("GET",
+  private[this] lazy val controllers_HomeController_ws0_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix)))
   )
-  private[this] lazy val controllers_HomeController_index0_invoker = createInvoker(
-    HomeController_3.index,
+  private[this] lazy val controllers_HomeController_ws0_invoker = createInvoker(
+    HomeController_1.ws(),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
-      "index",
+      "ws",
       Nil,
       "GET",
       this.prefix + """""",
@@ -76,48 +66,12 @@ class Routes(
     )
   )
 
-  // @LINE:8
-  private[this] lazy val controllers_CountController_count1_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("count")))
-  )
-  private[this] lazy val controllers_CountController_count1_invoker = createInvoker(
-    CountController_2.count,
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.CountController",
-      "count",
-      Nil,
-      "GET",
-      this.prefix + """count""",
-      """ An example controller showing how to use dependency injection""",
-      Seq()
-    )
-  )
-
   // @LINE:10
-  private[this] lazy val controllers_AsyncController_bla2_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("bla")))
-  )
-  private[this] lazy val controllers_AsyncController_bla2_invoker = createInvoker(
-    AsyncController_0.bla,
-    play.api.routing.HandlerDef(this.getClass.getClassLoader,
-      "router",
-      "controllers.AsyncController",
-      "bla",
-      Nil,
-      "GET",
-      this.prefix + """bla""",
-      """ An example controller showing how to write asynchronous code""",
-      Seq()
-    )
-  )
-
-  // @LINE:13
-  private[this] lazy val controllers_Assets_versioned3_route = Route("GET",
+  private[this] lazy val controllers_Assets_versioned1_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned3_invoker = createInvoker(
-    Assets_1.versioned(fakeValue[String]),
+  private[this] lazy val controllers_Assets_versioned1_invoker = createInvoker(
+    Assets_0.versioned(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Assets",
@@ -134,27 +88,15 @@ class Routes(
   def routes: PartialFunction[RequestHeader, Handler] = {
   
     // @LINE:6
-    case controllers_HomeController_index0_route(params@_) =>
+    case controllers_HomeController_ws0_route(params@_) =>
       call { 
-        controllers_HomeController_index0_invoker.call(HomeController_3.index)
-      }
-  
-    // @LINE:8
-    case controllers_CountController_count1_route(params@_) =>
-      call { 
-        controllers_CountController_count1_invoker.call(CountController_2.count)
+        controllers_HomeController_ws0_invoker.call(HomeController_1.ws())
       }
   
     // @LINE:10
-    case controllers_AsyncController_bla2_route(params@_) =>
-      call { 
-        controllers_AsyncController_bla2_invoker.call(AsyncController_0.bla)
-      }
-  
-    // @LINE:13
-    case controllers_Assets_versioned3_route(params@_) =>
+    case controllers_Assets_versioned1_route(params@_) =>
       call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_Assets_versioned3_invoker.call(Assets_1.versioned(file))
+        controllers_Assets_versioned1_invoker.call(Assets_0.versioned(file))
       }
   }
 }

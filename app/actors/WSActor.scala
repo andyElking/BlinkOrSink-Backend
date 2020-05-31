@@ -13,10 +13,18 @@ class WSActor (uuid: String, out: ActorRef, model: ServerModel) extends Actor {
     case MakeConnection(msg) =>
       out ! msg
     case msg: String =>
-      matchmake(msg)
+      val partner = model.getOpponentOf(thisUser)
+      partner match {
+        case Some(oppuuid) =>
+          //
+        case None =>
+          matchmake(msg)
+      }
   }
 
-  def matchmake(msg: String) {
+  def thisUser = User(uuid)
+
+  def matchmake(msg: String): Unit = {
     val potentialOpponent = model.waitingUser
     potentialOpponent match {
       case Some(otherUser) =>

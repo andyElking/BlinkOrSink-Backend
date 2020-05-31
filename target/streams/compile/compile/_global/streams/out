@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/andy/sbt Projects/play starter/play-samples-play-scala-starter-example/app/views/welcome.scala.html:75:42: value message is not a member of controllers.ReverseAsyncController[0m
-[0m[[0m[31merror[0m] [0m[0m        <a href="@routes.AsyncController.message">Click here for the AsyncController action!</a>[0m
-[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/andy/sbt Projects/play starter/play-samples-play-scala-starter-example/app/models/ServerModel.scala:34:25: method any2stringadd in object Predef is deprecated (since 2.13.0): Implicit injection of + is deprecated. Convert to String to call +[0m
+[0m[[0m[31merror[0m] [0m[0m                println(user + " was not in the waiting list.")[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

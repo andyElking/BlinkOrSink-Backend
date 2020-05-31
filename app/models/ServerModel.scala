@@ -15,11 +15,11 @@ class ServerModel {
 
     def waitingUser: Option[User] = _waitingUser
 
-    def enqueue(user: User) {
+    def enqueue(user: User): Unit = {
         _waitingUser = Some(user)
     }
 
-    def dequeue() {
+    def dequeue(): Unit = {
         _waitingUser = None
     }
 
@@ -28,16 +28,16 @@ class ServerModel {
         waitingUser match {
             case Some(u) if user == u =>
                 _waitingUser = None
-                println("Removed " + user + " from the waiting list.")
+                println("Removed " + user.toString + " from the waiting list.")
                 true
             case _ =>
-                println(user + " was not in the waiting list.")
+                println(user.toString + " was not in the waiting list.")
                 false
         }
     }
 
     /** Establishes a connection between two users */
-    def connect(user: User, otherUser: User) {
+    def connect(user: User, otherUser: User): Unit = {
         connections += (user -> otherUser)
         connections += (otherUser -> user)
     }
