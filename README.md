@@ -1,5 +1,5 @@
-# Backend for the Blink or Sink app made for Digithon 2020
+# Blink or Sink backend
 
-Implemented using the Scala Play Framework with WebSockets.
+Made during Digithon 2020, using the Scala Play Framework with WebSockets.
 
 
