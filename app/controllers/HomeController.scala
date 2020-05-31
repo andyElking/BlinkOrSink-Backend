@@ -1,25 +1,30 @@
 package controllers
 
+import scala.concurrent.ExecutionContext
+import actors.{Central, WSActor}
 import javax.inject._
-
+import play.api.libs.streams.ActorFlow
 import play.api.mvc._
+import akka.stream.{ActorMaterializer, Materializer}
+import akka.actor.ActorSystem
+import models.ServerModel
 
-/**
- * This controller creates an `Action` to handle HTTP requests to the
- * application's home page.
- */
+
+
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents) (implicit assetsFinder: AssetsFinder)
+class HomeController @Inject()(cc: ControllerComponents) (implicit actorSystem: ActorSystem,
+                                                          mat: Materializer,
+                                                          executionContext: ExecutionContext)
   extends AbstractController(cc) {
+  Central.init(actorSystem)
+  var uuidGen: Int = 1
+  val model = new ServerModel
 
-  /**
-   * Create an Action to render an HTML page with a welcome message.
-   * The configuration in the `routes` file means that this method
-   * will be called when the application receives a `GET` request with
-   * a path of `/`.
-   */
-  def index = Action {
-    Ok(views.html.index("This is weird."))
+  def ws(): WebSocket = WebSocket.accept[String, String] { _ =>
+    ActorFlow.actorRef{ actorRef =>
+      uuidGen+=1
+      WSActor.props(uuidGen.toString,actorRef,model)
+    }
   }
 
  /* def index = Action { request =>
