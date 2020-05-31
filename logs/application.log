@@ -1,7 +1,21 @@
-2020-05-31 03:12:18,005 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-7 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2020-05-31 18:14:59,636 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-5 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
 
-2020-05-31 03:12:18,190 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-7 - Application started (Dev) (no global state)
+2020-05-31 18:14:59,724 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-5 - Application started (Dev) (no global state)
+2020-05-31 19:51:58,451 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-317-thread-9 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 35000 milliseconds timeout
+2020-05-31 19:51:58,456 [INFO] from play.core.server.AkkaHttpServer in pool-317-thread-9 - Stopping Akka HTTP server...
+2020-05-31 19:51:58,476 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-29 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2020-05-31 19:51:59,567 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-35 - Running provided shutdown stop hooks
+2020-05-31 19:51:59,567 [WARN] from akka.actor.CoordinatedShutdown in play-dev-mode-akka.actor.default-dispatcher-9 - Task [shutdown-application-dev-mode] failed in phase [service-stop]: Compilation error[match may not be exhaustive.
+It would fail on the following input: None]
+2020-05-31 19:52:00,359 [ERROR] from play.core.server.common.WebSocketFlowHandler in play-dev-mode-akka.actor.default-dispatcher-31 - WebSocket flow threw exception
+akka.stream.AbruptTerminationException: Processor actor [Actor[akka://play-dev-mode/system/Materializers/StreamSupervisor-0/flow-5-0-detacher#-2079007676]] terminated abruptly
+2020-05-31 19:52:00,359 [ERROR] from play.core.server.common.WebSocketFlowHandler in play-dev-mode-akka.actor.default-dispatcher-5 - WebSocket flow threw exception
+akka.stream.AbruptTerminationException: Processor actor [Actor[akka://play-dev-mode/system/Materializers/StreamSupervisor-0/flow-1-0-detacher#1447839743]] terminated abruptly
+2020-05-31 19:52:00,360 [ERROR] from play.core.server.common.WebSocketFlowHandler in play-dev-mode-akka.actor.default-dispatcher-9 - WebSocket flow threw exception
+akka.stream.AbruptTerminationException: Processor actor [Actor[akka://play-dev-mode/system/Materializers/StreamSupervisor-0/flow-3-0-detacher#1350371152]] terminated abruptly
+2020-05-31 19:52:00,365 [ERROR] from play.core.server.common.WebSocketFlowHandler in play-dev-mode-akka.actor.default-dispatcher-10 - WebSocket flow threw exception
+akka.stream.AbruptTerminationException: Processor actor [Actor[akka://play-dev-mode/system/Materializers/StreamSupervisor-0/flow-7-0-detacher#-1691120624]] terminated abruptly
