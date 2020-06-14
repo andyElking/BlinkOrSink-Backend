@@ -16,7 +16,7 @@ class HomeController @Inject() (cc: ControllerComponents)
 
   Central.init
 
-  // uuids are not used, but can be useful for logging
+  // uuids are not used by the backend, but can be useful for logging and might be used by the frontend
   var uuidGen: Int = 1
 
   def ws(): WebSocket = WebSocket.accept[String, String] { _ =>

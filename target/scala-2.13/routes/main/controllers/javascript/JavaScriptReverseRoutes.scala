@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/andy/sbt Projects/play starter/play-samples-play-scala-starter-example/conf/routes
-// @DATE:Sun May 31 03:04:29 CEST 2020
+// @SOURCE:/home/andy/sbt Projects/BlinkOrSinkBackend/conf/routes
+// @DATE:Thu Jun 04 16:31:50 CEST 2020
 
 import play.api.routing.JavaScriptReverseRoute
 

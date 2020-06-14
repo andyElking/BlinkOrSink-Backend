@@ -87,7 +87,7 @@ class WSActor @Inject() (val uuid: String, out: ActorRef)(implicit ec: Execution
         // If Json is uninterpretable, then the whole string is sent to the opponent
         opponent.get ! Message(s)
 
-      case _ => // catchall
+      case _ => // catch all
     }
   }
 

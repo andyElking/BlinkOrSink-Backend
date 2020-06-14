@@ -63,7 +63,7 @@ class Central @Inject() (implicit ec: ExecutionContext, system: ActorSystem) ext
   // call keepPlayersAlive every minute
   system.scheduler.scheduleAtFixedRate(1.minutes,1.minutes,self, Tick())
 
-  /** All sockets are pinged to prevent them from closing */
+  /** All sockets are pinged regularly to prevent them from closing */
   def keepPlayersAlive(): Unit = {
     connections.foreach(a => a._1 ! Message("Stay alive"))
     // Also

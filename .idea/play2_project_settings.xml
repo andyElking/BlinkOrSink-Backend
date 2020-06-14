@@ -3,6 +3,13 @@
   <component name="Play2ExcludedModulesSettings">
     <option name="INFO">
       <map>
+        <entry key="Blink-Or-Sink backend">
+          <value>
+            <ProjectSettingsEntry>
+              <option name="playDistrPath" value="$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/play/play_2.13/2.8.2/play_2.13-2.8.2.jar" />
+            </ProjectSettingsEntry>
+          </value>
+        </entry>
         <entry key="play-scala-starter-example">
           <value>
             <ProjectSettingsEntry>
@@ -37,7 +44,7 @@
                   <option value="controllers.Assets.Asset" />
                 </list>
               </option>
-              <option name="uri" value="$USER_HOME$/sbt%20Projects/play%20starter/play-samples-play-scala-starter-example" />
+              <option name="uri" value="$USER_HOME$/sbt%20Projects/BlinkOrSinkBackend" />
             </ProjectSettingsEntry>
           </value>
         </entry>
